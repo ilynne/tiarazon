@@ -43,6 +43,7 @@ group :test, :development do
   gem "capybara"
 # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
+  gem 'shoulda-matchers'
 end
 
 # Use ActiveModel has_secure_password
