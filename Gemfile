@@ -24,6 +24,9 @@ gem 'spring',        group: :development
 
 gem 'haml-rails'
 
+# My gem from last quarter
+gem 'random_pizza'
+
 group :production do
   gem 'pg'
 end

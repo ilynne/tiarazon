@@ -16,3 +16,6 @@
         %ul
           %li= link_to 'Add', new_shop_path
     = yield
+    %footer
+      = "#{Time.now}"
+      %p= "#{RandomPizza.new.suggestion}"
