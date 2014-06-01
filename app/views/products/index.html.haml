@@ -4,7 +4,7 @@
   %tr
     %th Name
     %th Description
-    %th Picture
+    %th Photo
     %th Price
     %th Shop
     %th
@@ -15,7 +15,7 @@
     %tr
       %td= product.name
       %td= product.description
-      %td= product.picture
+      %td= image_tag product.photo.url(:thumb)
       %td= product.price
       %td= link_to "#{product.shop_id} #{product.shop.name}", edit_shop_path(product.shop) rescue 'n/a'
       %td= link_to 'Show', product

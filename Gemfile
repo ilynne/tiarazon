@@ -24,6 +24,8 @@ gem 'spring',        group: :development
 
 gem 'haml-rails'
 
+gem "paperclip", "~> 4.1"
+
 # My gem from last quarter
 gem 'random_pizza'
 
