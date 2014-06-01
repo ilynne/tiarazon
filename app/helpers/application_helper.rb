@@ -8,11 +8,11 @@ module ApplicationHelper
     end
   end
 
-  def devise_admin_links
-    if current_admin #user_signed_in?
-      link_to 'Log Out Admin', destroy_admin_session_path, method: :delete
+  def shop_name_link product
+    if current_user && current_user.admin?
+      link_to "##{product.shop_id}-#{product.shop.name}", edit_shop_path(product.shop) rescue 'n/a'
     else
-      link_to 'Log In', new_admin_session_path
+      "#{product.shop.name}" rescue 'n/a'
     end
   end
 

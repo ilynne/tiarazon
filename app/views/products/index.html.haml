@@ -17,7 +17,7 @@
       %td= product.description
       %td= image_tag product.photo.url(:thumb)
       %td= number_to_currency product.price
-      %td= link_to "#{product.shop_id} #{product.shop.name}", edit_shop_path(product.shop) rescue 'n/a'
+      %td= shop_name_link product
       %td= link_to 'Show', product
       %td= link_to 'Add to Cart', "#"
       -if current_user && current_user.admin?
