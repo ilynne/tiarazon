@@ -10,6 +10,9 @@
       %ul
         %li= link_to 'Tiarazon', root_path
         = render 'shared/nav_links'
+    - flash.each do |name, msg|
+      - if msg.is_a?(String)
+        = content_tag :div, msg, :class => "flash_#{name}"
     = yield
     #footer
       %h3= "Hungry? Order a pizza while you browse!"

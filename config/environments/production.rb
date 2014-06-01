@@ -65,6 +65,17 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
 
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address              => "smtp.mailgun.org",
+    :port                 => 587,
+    :domain               => 'sandbox748e8d7ccda246ee9a86a0a8afde0815.mailgun.org',
+    :user_name            => 'postmaster@sandbox748e8d7ccda246ee9a86a0a8afde0815.mailgun.org',
+    :password             => '91b4zg4m2di4',
+    :authentication       => 'plain'
+  }
+
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
   config.i18n.fallbacks = true
