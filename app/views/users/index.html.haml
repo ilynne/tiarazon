@@ -1,0 +1,17 @@
+%h1 Users
+
+%table
+  %tr
+    %th Email
+    %th Admin
+    %th
+    %th
+
+  - @users.each do |user|
+    %tr
+      %td= user.email
+      %td.center= '&#x2713;'.html_safe if user.admin?
+      %td= link_to 'Edit', edit_user_path(user)
+      %td= link_to 'Destroy', user, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
