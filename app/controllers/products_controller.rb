@@ -1,6 +1,9 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_admin!, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:edit, :update, :destroy]
+  before_filter only: [:edit, :update, :destroy] do
+    redirect_to :root unless current_user && current_user.admin?
+  end
 
   # GET /products
   # GET /products.json
