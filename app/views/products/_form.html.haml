@@ -23,8 +23,8 @@
   = f.fields_for :shop do |shop_form|
     #shop_name.field
       = shop_form.label :name
-      = shop_form.text_field :name
-  = f.collection_select(:shop_id, Shop.all, :id, :name, {selected: @product.shop_id, include_blank: false})
+      = shop_form.text_field :name, :value => ''
+  = f.collection_select(:shop_id, Shop.all, :id, :name, {selected: @product.shop_id, include_blank: true})
 
   .actions
     = f.submit 'Save'

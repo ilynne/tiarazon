@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:edit, :update, :destroy]
 
   # GET /products
   # GET /products.json
@@ -20,6 +21,8 @@ class ProductsController < ApplicationController
 
   # GET /products/1/edit
   def edit
+    flash[:notice] = @product.shop.inspect
+    @product.shop = Shop.first if @product.shop.nil?
   end
 
   # POST /products
