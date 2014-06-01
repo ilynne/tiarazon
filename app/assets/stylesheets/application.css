@@ -13,11 +13,21 @@
  *= require_tree .
  *= require_self
  */
-header {
-  border-bottom: 1px solid #00aaff;
+
+h1, h2, h3, h4, h5 {
+  color: #888888;
 }
 
-footer {
-  border-top: 1px solid #00aaff;
+#header {
+  border-bottom: 1px solid #aaaaaa;
+}
+
+#footer {
+  border-top: 1px solid #aaaaaa;
   margin-top: 12px;
+}
+
+#copyright {
+  font-size: .9em;
+  color: #aaaaaa;
 }

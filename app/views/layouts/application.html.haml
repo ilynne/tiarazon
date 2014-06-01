@@ -6,13 +6,14 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    %header
+    #header
       %ul
         %li= link_to 'Tiarazon', root_path
         = render 'shared/nav_links'
     = yield
-    %footer
+    #footer
       %h3= "Hungry? Order a pizza while you browse!"
       %p= "#{RandomPizza.new.suggestion}"
       = render 'shared/nav_links'
-      %p= "#{Time.now}"
+      #copyright
+        = "Copyright #{Time.now.year} Lynne's Tiarashop Ltd."
