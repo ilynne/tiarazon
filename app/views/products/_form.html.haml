@@ -6,25 +6,34 @@
         - @product.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :description
-    = f.text_area :description
-  .field
-    = f.label :picture
-    = f.text_field :picture
-  .field
-    = f.label :price
-    = f.text_field :price
+  %fieldset
+    %legend Product
+    .field
+      = f.label :name
+      = f.text_field :name
+    .field
+      = f.label :description
+      = f.text_area :description
+    .field
+      = f.label :picture
+      = f.text_field :picture
+    .field
+      = f.label :price
+      = f.text_field :price
 
-  %h1 Shop
-  = f.fields_for :shop do |shop_form|
-    #shop_name.field
-      = shop_form.label :name
-      = shop_form.text_field :name, :value => ''
-  = f.collection_select(:shop_id, Shop.all, :id, :name, {selected: @product.shop_id, include_blank: true})
+  %fieldset
+    %legend Shop
+    = f.fields_for :shop do |shop_form|
+      = render 'shops/shop_fields', :f => shop_form
+
+    -# = f.fields_for :shop do |shop_form|
+    -#   #shop_name.field
+    -#     = shop_form.label :name
+    -#     = shop_form.text_field :name, :value => ''
+    -#   #shop_description.field
+    -#     = shop_form.label :description
+    -#     = shop_form.text_area :description
+    = f.collection_select(:shop_id, Shop.all, :id, :name, {selected: @product.shop_id, include_blank: true})
 
   .actions
     = f.submit 'Save'

@@ -6,11 +6,8 @@
         - @shop.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :description
-    = f.text_area :description
-  .actions
-    = f.submit 'Save'
+  %fieldset
+    %legend Shop
+    = render 'shop_fields', :f => f
+    .actions
+      = f.submit 'Save'

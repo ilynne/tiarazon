@@ -22,7 +22,7 @@ class ProductsController < ApplicationController
   # GET /products/1/edit
   def edit
     flash[:notice] = @product.shop.inspect
-    @product.shop = Shop.first if @product.shop.nil?
+    @product.build_shop if @product.shop.nil?
   end
 
   # POST /products
@@ -73,6 +73,6 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:name, :description, :picture, :price, :shop_id, shop_attributes: [:name])
+      params.require(:product).permit(:name, :description, :picture, :price, :shop_id, shop_attributes: [:name, :description])
     end
 end
