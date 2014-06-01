@@ -6,6 +6,7 @@
     %th Description
     %th Picture
     %th Price
+    %th Shop
     %th
     %th
     %th
@@ -16,6 +17,7 @@
       %td= product.description
       %td= product.picture
       %td= product.price
+      %td= link_to product.shop.name, edit_shop_path(product.shop) rescue 'n/a'
       %td= link_to 'Show', product
       %td= link_to 'Edit', edit_product_path(product)
       %td= link_to 'Destroy', product, :method => :delete, :data => { :confirm => 'Are you sure?' }

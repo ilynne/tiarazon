@@ -4,4 +4,5 @@ class Product < ActiveRecord::Base
   validates :name, presence: true
   validates :price, presence: true
 
+  accepts_nested_attributes_for :shop
 end
