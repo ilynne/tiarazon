@@ -1,5 +1,6 @@
 class Product < ActiveRecord::Base
   belongs_to :shop
+  has_many :orders, through: :order_items
 
   validates :name, presence: true
   validates :price, presence: true

@@ -1,10 +1,21 @@
 Rails.application.routes.draw do
+  resources :order_items
+
+  resources :orders
+
   devise_for :users
   resources :shops
 
   resources :products
 
   resources :users
+
+  scope 'cart' do
+    put    'update',                  to: 'orders#update'
+    post   'add_order_item',          to: 'order_items#add_to_cart'
+    post   'update_order_item/:id',   to: 'order_items#update_in_cart',   as: 'update_cart_order_item'
+    delete 'remove_order_item/:id',   to: 'order_items#remove_from_cart', as: 'remove_order_item'
+  end
 
   get "welcome/index"
   # The priority is based upon order of creation: first created -> highest priority.
