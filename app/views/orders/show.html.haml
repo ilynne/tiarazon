@@ -1,0 +1,14 @@
+%p#notice= notice
+
+%p
+  %b Email:
+  = @order.email
+%p
+  %b Status:
+  = @order.status
+
+= render 'order_items/cart', :order => @order
+
+= link_to 'Edit', edit_order_path(@order)
+
+= link_to 'Back', orders_path

@@ -1,0 +1,29 @@
+- if @order
+  %table
+    %tr
+      %th Product
+      %th Decsciption
+      %th
+      %th Quantity
+      %th Price
+      %th Price
+      %th
+
+
+
+    - @order.order_items.each do |order_item|
+      %tr
+        %td= order_item.product.name
+        %td= order_item.product.description
+        %td= image_tag order_item.product.photo.url(:thumb)
+        %td.center= order_item.quantity
+        %td= number_to_currency order_item.product.price
+        %td= number_to_currency order_item.price
+        %td= link_to 'Remove', order_item, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+  %br
+
+%p= button_to('Checkout', edit_order_path, :method => :get, 'order' => @order.id)
+%p= "#{@order.id}"
+%p= "#{@order.inspect} order"
+%p= "#{session.inspect}"

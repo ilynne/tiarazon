@@ -1,0 +1,9 @@
+%h1 Order checkout
+
+= render 'form'
+
+= render 'order_items/cart', :order => @order
+
+= link_to 'Show', @order
+
+= link_to 'Back', orders_path
