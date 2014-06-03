@@ -29,6 +29,9 @@ gem "paperclip", "~> 4.1"
 # My gem from last quarter
 gem 'random_pizza'
 
+# Accounting
+gem 'plutus'
+
 group :production do
   gem 'pg'
 end
