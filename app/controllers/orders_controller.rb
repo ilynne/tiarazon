@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+
   before_action :set_order, only: [:show, :edit, :update, :destroy]
 
   # GET /orders
@@ -47,6 +48,7 @@ class OrdersController < ApplicationController
     end
     respond_to do |format|
       if @order.update(order_params) && params[:order][:email].present?
+        ledger @order
         notice = "Thank you for your order!"
         session[:cart_id] = nil
         OrderMailer.order_confirmed(@order).deliver
@@ -71,6 +73,19 @@ class OrdersController < ApplicationController
   end
 
   private
+
+    def ledger order
+      entry = Plutus::Entry.build(
+                :description => "Tiarazon sale",
+                :commercial_document => order,
+                :debits => [
+                  {:account => "Accounts Receivable", :amount => order.total }],
+                :credits => [
+                  {:account => "Sales Revenue", :amount => order.total * 0.2 },
+                  {:account => "Accounts Payable", :amount => order.total * 0.8 }])
+      entry.save
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_order
       @order = Order.find(params[:id])

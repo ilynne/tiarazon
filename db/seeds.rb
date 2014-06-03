@@ -14,3 +14,7 @@ shops = Shop.create( [ { name: 'The Tiara Shop', description: 'Quality tiaras si
 products = Product.create ( [ { name: 'Tiara', description: 'Very sparkly!', price: 25, shop: Shop.first },
                               { name: 'Freshwater Pearl Tiara', description: 'Unique pearl tiara. Each one is hand made.', price: 75, shop: Shop.last },
                               { name: 'Basic Tiara', description: 'Plain tiara.', price: 8, shop: Shop.second } ] )
+
+Plutus::Asset.create(:name => "Accounts Receivable")
+Plutus::Revenue.create(:name => "Sales Revenue")
+Plutus::Liability.create(:name => "Accounts Payable")

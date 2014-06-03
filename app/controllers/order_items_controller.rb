@@ -1,4 +1,5 @@
 class OrderItemsController < ApplicationController
+  layout 'tiarazon'
   before_action :set_order_item, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:index]
 

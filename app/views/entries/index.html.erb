@@ -1,0 +1,28 @@
+<div class="plutus_container">
+<h1>Entries</h1>
+
+<table cellspacing="0">
+  <thead>
+    <tr>
+      <th class="nobg">ID</th>
+      <th>Description</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @entries.each do |entry| %>
+    <tr class="<%= cycle("even", "odd") -%>">
+      <td><%=link_to(entry.id, entry_path(entry)) %></td>
+      <td><%=h entry.description %></td>
+      <td></td>
+      <td></td>
+      <td><%=h entry.created_at %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br />
+
+<h3>Go to <%= link_to 'Accounts', accounts_path %></h3>
+</div>
