@@ -1,0 +1,32 @@
+%h1 Tiaras for sale
+
+%table
+  %tr
+    %th Name
+    %th Description
+    %th Photo
+    %th Price
+    %th Shop
+    %th
+    - if current_user && current_user.admin?
+      %th
+      %th
+
+  - @products.each do |product|
+    %tr
+      %td= product.name
+      %td= product.description
+      %td= image_tag product.photo.url(:thumb)
+      %td= number_to_currency product.price
+      %td= shop_name_link product
+      %td
+
+        = form_for :order_item, :as => :post, :url => order_items_path do |f|
+          = f.hidden_field :product_id, :value => product.id
+          = f.hidden_field :quantity, :value => 1
+          = f.hidden_field :price, :value => product.price
+          = f.submit 'Add to cart'
+
+      - if current_user && current_user.admin?
+        %td= link_to 'Edit', edit_product_path(product)
+        %td= link_to 'Destroy', product, :method => :delete, :data => { :confirm => 'Are you sure?' }
