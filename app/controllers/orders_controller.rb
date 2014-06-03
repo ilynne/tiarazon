@@ -42,13 +42,18 @@ class OrdersController < ApplicationController
   def update
     if params[:commit] = 'confirm'
       @order.status = 'complete'
-      notice = "Thank you for your order!"
+    else
+      @order.status = nil
     end
     respond_to do |format|
-      if @order.update(order_params)
-        format.html { redirect_to @order, notice: "#{notice} #{params.inspect}" }
+      if @order.update(order_params) && params[:order][:email].present?
+        notice = "Thank you for your order!"
+        session[:cart_id] = nil
+        OrderMailer.order_confirmed(@order).deliver
+        format.html { redirect_to @order, notice: notice }
         format.json { render :show, status: :ok, location: @order }
       else
+        @order.errors.add(:email, "cannot be blank")
         format.html { render :edit }
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end

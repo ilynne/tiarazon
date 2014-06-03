@@ -6,8 +6,7 @@
       %th
       %th Quantity
       %th Price
-      %th Price
-      %th
+      %t
 
 
 
@@ -17,12 +16,17 @@
         %td= order_item.product.description
         %td= image_tag order_item.product.photo.url(:thumb)
         %td.center= order_item.quantity
-        %td= number_to_currency order_item.product.price
-        %td= number_to_currency order_item.price
+        %td.right= number_to_currency order_item.total
         %td= link_to 'Remove', order_item, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+    %tr
+      %td.right{:colspan => 4}= 'Total'
+      %td.right= number_to_currency @order.total
+      %td
 
   %br
 
+%p= button_to('Keep shopping', products_path, :method => :get)
 %p= button_to('Checkout', edit_order_path, :method => :get, 'order' => @order.id)
 %p= "#{@order.id}"
 %p= "#{@order.inspect} order"

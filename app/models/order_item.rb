@@ -4,5 +4,7 @@ class OrderItem < ActiveRecord::Base
 
   accepts_nested_attributes_for :order
 
-
+  def total
+    self.price * self.quantity
+  end
 end
