@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   resources :products
 
-  resources :users
+  resources :users, only: [:index, :edit, :update, :destroy]
 
   scope 'cart' do
     put    'update',                  to: 'orders#update'
