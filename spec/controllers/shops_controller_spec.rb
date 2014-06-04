@@ -30,6 +30,13 @@ describe ShopsController do
   # ShopsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
+  let(:admin) { FactoryGirl.create(:user, admin: true) }
+
+  before(:each) do
+    sign_in admin
+  end
+
+
   describe "GET index" do
     it "assigns all shops as @shops" do
       shop = Shop.create! valid_attributes
