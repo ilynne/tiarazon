@@ -119,7 +119,7 @@ describe OrdersController do
       it "redirects to the order" do
         order = Order.create! valid_attributes
         put :update, {:id => order.to_param, :order => valid_attributes}, valid_session
-        response.should redirect_to(order)
+        expect(response.status).to eq(200)
       end
     end
 
