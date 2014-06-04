@@ -1,0 +1,20 @@
+- if @order
+  %table
+    %tr
+      %th Product
+      %th Decsciption
+      %th Quantity
+      %th Price
+
+
+    - @order.order_items.each do |order_item|
+      %tr
+        %td= order_item.product.name
+        %td= order_item.product.description
+        %td.center= order_item.quantity
+        %td.right= number_to_currency order_item.total
+
+    %tr
+      %td.right{:colspan => 3}= 'Total'
+      %td.right= number_to_currency @order.total
+      %td

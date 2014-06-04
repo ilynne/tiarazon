@@ -1,4 +1,5 @@
 class OrderItemsController < ApplicationController
+  layout 'tiarazon'
   before_action :set_order_item, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:index]
 
@@ -34,12 +35,13 @@ class OrderItemsController < ApplicationController
     # redirect_to products_path
     # @order = build_order
     # @order_item.order_id = @order.id
+    build_order unless session[:cart_id].present?
     @order_item = OrderItem.new(order_item_params)
     @order_item.order_id = session[:cart_id]
 
     respond_to do |format|
       if @order_item.save
-        format.html { redirect_to @order_item, notice: 'Order item was successfully created.' }
+        format.html { redirect_to order_path(session[:cart_id]), notice: 'Order item was successfully created.' }
         format.json { render :show, status: :created, location: @order_item }
       else
         format.html { render :new }

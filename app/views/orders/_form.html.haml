@@ -8,10 +8,9 @@
 
   .field
     = f.label :email
-    = f.text_field :email
-  - if current_user && current_user.admin?
-    .field
-      = f.label :status
-      = f.text_field :status
+    - if current_user
+      = f.text_field :email, :value => current_user.email
+    - else
+      = f.text_field :email
   .actions
     = f.submit 'Confirm'

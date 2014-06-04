@@ -8,7 +8,11 @@ Rails.application.routes.draw do
 
   resources :products
 
-  resources :users
+  resources :users, only: [:index, :edit, :update, :destroy]
+
+  resources :accounts, only: [:index, :show]
+
+  resources :entries, only: [:index, :show]
 
   scope 'cart' do
     put    'update',                  to: 'orders#update'
@@ -16,6 +20,14 @@ Rails.application.routes.draw do
     post   'update_order_item/:id',   to: 'order_items#update_in_cart',   as: 'update_cart_order_item'
     delete 'remove_order_item/:id',   to: 'order_items#remove_from_cart', as: 'remove_order_item'
   end
+
+  # resources :accounts, only: [:index, :show]
+
+  # mount Plutus::Engine => "/plutus", :as => "plutus"
+
+  # authenticate :user do
+  #   mount Plutus::Engine => "/plutus", layout: 'plutus/application'
+  # end
 
   get "welcome/index"
   # The priority is based upon order of creation: first created -> highest priority.

@@ -29,6 +29,9 @@ gem "paperclip", "~> 4.1"
 # My gem from last quarter
 gem 'random_pizza'
 
+# Accounting
+gem 'plutus'
+
 group :production do
   gem 'pg'
   # gem 'rails_12factor'
@@ -48,7 +51,8 @@ group :test, :development do
   gem "factory_girl_rails"
   gem "capybara"
 # Use sqlite3 as the database for Active Record
-  gem 'sqlite3'
+  # gem 'sqlite3'
+  gem 'mysql2'
   gem 'shoulda-matchers'
 end
 

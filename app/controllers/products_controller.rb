@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:edit, :update, :destroy]
   before_filter only: [:edit, :update, :destroy] do

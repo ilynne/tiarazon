@@ -19,7 +19,6 @@
     = render 'shared/auth_links'
     = yield
     #footer
-      %p= "#{@cart.inspect}"
       %h3= "Hungry? Order a pizza while you browse!"
       %p= "#{RandomPizza.new.suggestion}"
       = render 'shared/nav_links'
