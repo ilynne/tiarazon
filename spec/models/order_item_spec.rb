@@ -1,5 +1,7 @@
 require 'spec_helper'
 
 describe OrderItem do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { should belong_to :order }
+  it { should belong_to :product }
+  it { should accept_nested_attributes_for :order }
 end
