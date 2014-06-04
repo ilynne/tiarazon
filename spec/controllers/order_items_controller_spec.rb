@@ -44,7 +44,7 @@ describe OrderItemsController do
         assigns(:order_item).should be_persisted
       end
 
-      it "redirects to the created order_item" do
+      it "redirects to the created order" do
         post :create, {:order_item => valid_attributes}, valid_session
         response.body.should redirect_to(Order.last)
       end
@@ -53,16 +53,6 @@ describe OrderItemsController do
 
   describe "PUT update" do
     describe "with valid params" do
-      it "updates the requested order_item" do
-        order_item = OrderItem.create! valid_attributes
-        # Assuming there are no other order_items in the database, this
-        # specifies that the OrderItem created on the previous line
-        # receives the :update_attributes message with whatever params are
-        # submitted in the request.
-        OrderItem.any_instance.should_receive(:update).with({ "order_id" => "" })
-        put :update, {:id => order_item.to_param, :order_item => { "order_id" => "" }}, valid_session
-      end
-
       it "assigns the requested order_item as @order_item" do
         order_item = OrderItem.create! valid_attributes
         put :update, {:id => order_item.to_param, :order_item => valid_attributes}, valid_session
@@ -72,25 +62,7 @@ describe OrderItemsController do
       it "redirects to the order_item" do
         order_item = OrderItem.create! valid_attributes
         put :update, {:id => order_item.to_param, :order_item => valid_attributes}, valid_session
-        response.should redirect_to(order_item)
-      end
-    end
-
-    describe "with invalid params" do
-      it "assigns the order_item as @order_item" do
-        order_item = OrderItem.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        OrderItem.any_instance.stub(:save).and_return(false)
-        put :update, {:id => order_item.to_param, :order_item => { "order_id" => "invalid value" }}, valid_session
-        assigns(:order_item).should eq(order_item)
-      end
-
-      it "re-renders the 'edit' template" do
-        order_item = OrderItem.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        OrderItem.any_instance.stub(:save).and_return(false)
-        put :update, {:id => order_item.to_param, :order_item => { "order_id" => "invalid value" }}, valid_session
-        response.should render_template("edit")
+        response.body.should redirect_to(Order.last)
       end
     end
   end
@@ -103,11 +75,6 @@ describe OrderItemsController do
       }.to change(OrderItem, :count).by(-1)
     end
 
-    it "redirects to the order_items list" do
-      order_item = OrderItem.create! valid_attributes
-      delete :destroy, {:id => order_item.to_param}, valid_session
-      response.should redirect_to(order_items_url)
-    end
   end
 
 end

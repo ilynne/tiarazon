@@ -65,10 +65,8 @@ class OrderItemsController < ApplicationController
   # DELETE /order_items/1.json
   def destroy
     @order_item.destroy
-    respond_to do |format|
-      format.html { redirect_to order_items_url, notice: 'Order item was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to order_path(session[:cart_id]), notice: 'Order item was removed.' if session[:cart_id].present?
+    redirect_to root_path if session[:cart_id].blank?
   end
 
   #cart scope
