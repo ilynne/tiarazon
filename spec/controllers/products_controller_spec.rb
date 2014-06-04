@@ -30,6 +30,14 @@ describe ProductsController do
   # ProductsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
+  let(:admin) { FactoryGirl.create(:admin) }
+
+  before(:each) do
+    # session = AdminSession.create(admin)
+    sign_in admin
+    # request.env["HTTP_REFERER"] = "where_i_came_from"
+  end
+
   describe "GET index" do
     it "assigns all products as @products" do
       product = Product.create! valid_attributes
