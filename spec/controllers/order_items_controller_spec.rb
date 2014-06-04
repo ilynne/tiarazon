@@ -30,37 +30,6 @@ describe OrderItemsController do
   # OrderItemsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  describe "GET index" do
-    it "assigns all order_items as @order_items" do
-      order_item = OrderItem.create! valid_attributes
-      get :index, {}, valid_session
-      assigns(:order_items).should eq([order_item])
-    end
-  end
-
-  describe "GET show" do
-    it "assigns the requested order_item as @order_item" do
-      order_item = OrderItem.create! valid_attributes
-      get :show, {:id => order_item.to_param}, valid_session
-      assigns(:order_item).should eq(order_item)
-    end
-  end
-
-  describe "GET new" do
-    it "assigns a new order_item as @order_item" do
-      get :new, {}, valid_session
-      assigns(:order_item).should be_a_new(OrderItem)
-    end
-  end
-
-  describe "GET edit" do
-    it "assigns the requested order_item as @order_item" do
-      order_item = OrderItem.create! valid_attributes
-      get :edit, {:id => order_item.to_param}, valid_session
-      assigns(:order_item).should eq(order_item)
-    end
-  end
-
   describe "POST create" do
     describe "with valid params" do
       it "creates a new OrderItem" do
@@ -77,23 +46,7 @@ describe OrderItemsController do
 
       it "redirects to the created order_item" do
         post :create, {:order_item => valid_attributes}, valid_session
-        response.should redirect_to(OrderItem.last)
-      end
-    end
-
-    describe "with invalid params" do
-      it "assigns a newly created but unsaved order_item as @order_item" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        OrderItem.any_instance.stub(:save).and_return(false)
-        post :create, {:order_item => { "order_id" => "invalid value" }}, valid_session
-        assigns(:order_item).should be_a_new(OrderItem)
-      end
-
-      it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        OrderItem.any_instance.stub(:save).and_return(false)
-        post :create, {:order_item => { "order_id" => "invalid value" }}, valid_session
-        response.should render_template("new")
+        response.body.should redirect_to(Order.last)
       end
     end
   end

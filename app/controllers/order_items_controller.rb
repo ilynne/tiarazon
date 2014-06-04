@@ -1,7 +1,7 @@
 class OrderItemsController < ApplicationController
   layout 'tiarazon'
   before_action :set_order_item, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:index]
+  # before_action :authenticate_user!, only: [:index]
 
   # GET /order_items
   # GET /order_items.json
@@ -29,12 +29,9 @@ class OrderItemsController < ApplicationController
   # POST /order_items
   # POST /order_items.json
   def create
-    # build_order unless session[:cart_id].present?
-    # @order_item.order_id = session[:cart_id]
+
     flash[:notice] = params.inspect
-    # redirect_to products_path
-    # @order = build_order
-    # @order_item.order_id = @order.id
+
     build_order unless session[:cart_id].present?
     @order_item = OrderItem.new(order_item_params)
     @order_item.order_id = session[:cart_id]
