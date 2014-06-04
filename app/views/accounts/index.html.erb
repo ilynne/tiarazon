@@ -6,6 +6,9 @@
     <th class="nobg">ID</th>
     <th>Name</th>
     <th>Type</th>
+    <th>Credit Balance</th>
+    <th>Debit Balance</th>
+    <th>Balance</td>
   </tr>
 
 <% @accounts.each do |account| %>
@@ -13,10 +16,14 @@
     <td><%=link_to(account.id, account_path(account.id)) %></td>
     <td><%=h account.name %></td>
     <td><%=h account.type.sub('Plutus::','') %></td>
+    <td><%=h account.credits_balance %></td>
+    <td><%=h account.debits_balance %></td>
+    <td><%=h account.balance %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
+<h3>Go to <%= link_to 'Entries', entries_path %></h3>
 </div>

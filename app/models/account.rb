@@ -1,7 +1,7 @@
 class Account < ActiveRecord::Base
   self.table_name = "plutus_accounts"
-  # has_many :credit_amounts, :extend => AmountsExtension, :class_name => 'Plutus::CreditAmount'
-  # has_many :debit_amounts, :extend => AmountsExtension, :class_name => 'Plutus::DebitAmount'
+  has_many :credit_amounts, :extend => Plutus::AmountsExtension, :class_name => 'Plutus::CreditAmount'
+  has_many :debit_amounts, :extend => Plutus::AmountsExtension, :class_name => 'Plutus::DebitAmount'
   has_many :credit_entries, :through => :credit_amounts, :source => :entry, :class_name => 'Plutus::Entry'
   has_many :debit_entries, :through => :debit_amounts, :source => :entry, :class_name => 'Plutus::Entry'
 
