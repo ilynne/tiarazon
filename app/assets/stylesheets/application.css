@@ -40,3 +40,13 @@ h1, h2, h3, h4, h5 {
 .right {
   text-align: right;
 }
+
+.navbar-inner {
+  padding-top: 10px;
+}
+
+.brand:hover a {
+  background-color: transparent !important;
+  color: #333333;
+  text-decoration: none;
+}
