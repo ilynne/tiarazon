@@ -1,0 +1,26 @@
+!!!
+%html
+  %head
+    %title Tiarazon
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body
+    #header
+      %ul
+        %li= link_to 'Tiarazon', root_path
+        = render 'shared/nav_links'
+    - if session[:cart_id].present?
+      #cart
+        %p= link_to 'Cart', order_path(session[:cart_id].to_i)
+    -# - flash.each do |name, msg|
+    -#   - if msg.is_a?(String)
+    -#     = content_tag :p, msg, :id => "#{name}"
+    = render 'shared/auth_links'
+    = yield
+    #footer
+      %h3= "Hungry? Order a pizza while you browse!"
+      %p= "#{RandomPizza.new.suggestion}"
+      = render 'shared/nav_links'
+      #copyright
+        = "Copyright #{Time.now.year} Lynne's Tiarashop Ltd."
