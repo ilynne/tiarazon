@@ -58,6 +58,7 @@ group :test, :development do
   # gem 'sqlite3'
   gem 'mysql2'
   gem 'shoulda-matchers'
+  gem 'database_cleaner'
 end
 
 # Use ActiveModel has_secure_password
