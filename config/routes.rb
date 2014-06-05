@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :order_items, only: [:create, :update, :destroy]
 
-  resources :orders
+  resources :orders, only: [:show, :edit, :index, :create, :update, :destroy]
 
   devise_for :users
   resources :shops
