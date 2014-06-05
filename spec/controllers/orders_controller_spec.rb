@@ -46,13 +46,6 @@ describe OrdersController do
     end
   end
 
-  describe "GET new" do
-    it "assigns a new order as @order" do
-      get :new, {}, valid_session
-      assigns(:order).should be_a_new(Order)
-    end
-  end
-
   describe "GET edit" do
     it "assigns the requested order as @order" do
       order = Order.create! valid_attributes
@@ -78,22 +71,6 @@ describe OrdersController do
       it "redirects to the created order" do
         post :create, {:order => valid_attributes}, valid_session
         response.should redirect_to(Order.last)
-      end
-    end
-
-    describe "with invalid params" do
-      it "assigns a newly created but unsaved order as @order" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Order.any_instance.stub(:save).and_return(false)
-        post :create, {:order => { "email" => "invalid value" }}, valid_session
-        assigns(:order).should be_a_new(Order)
-      end
-
-      it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Order.any_instance.stub(:save).and_return(false)
-        post :create, {:order => { "email" => "invalid value" }}, valid_session
-        response.should render_template("new")
       end
     end
   end
